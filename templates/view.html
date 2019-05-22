@@ -1,0 +1,17 @@
+{% extends "home.html" %}
+{% block header %}
+  <h1 class="header">
+      View Database
+  </h1>
+{% endblock %}
+{% block content %}
+<div class="container">
+  {% for d in user %}
+  <div><p>{{ d.username }}, {{ d.firstname }} {{ d.lastname }}, {{ d.password }}
+  </p></div>
+{% endfor %}
+  <p><a href="/">Home</a> <a href="/add">Add again to database </a></p>
+  <ul>
+  </ul>
+</div>
+{% endblock %}
