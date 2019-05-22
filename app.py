@@ -33,17 +33,14 @@ def render_template(template_name, **context):
             extensions=extensions,
             )
     jinja_env.globals.update(globals)
-
-    #jinja_env.update_template_context(context)
     return jinja_env.get_template(template_name).render(context)
 
-class home:
+class home: # home page
     def GET(self):
-        # You can use a relative path as template name, for example, 'ldap/hello.html'.
         return render_template('home.html', name='home')
 
 
-class add:
+class add: # adds user to db 
     def GET(self):
         web.header('Content-type', 'text/html')
         uname = "".join(random.choice(string.letters) for i in range(5))
@@ -55,7 +52,7 @@ class add:
         session.commit()
         return render_template('add.html',uname=uname, fname=fname, lname=lname, passw=passw)
 
-class view:
+class view: # view all of db
     def GET(self):
         web.header('Content-type', 'text/html')
         table=session.query(User).all()
